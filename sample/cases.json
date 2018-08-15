@@ -1,0 +1,32 @@
+[
+  {
+    "plaintext": "",
+    "ciphertext": "",
+    "obfuscate": ["secret"],
+    "key": "k01"
+  },
+  {
+    "plaintext": "foo=bar",
+    "ciphertext": "foo=bar",
+    "obfuscate": ["secret"],
+    "key": "k01"
+  },
+  {
+    "plaintext": "foo=bar&secret=tell-no-one",
+    "ciphertext": "foo=bar&enc=k01|c4d9734010d5ee825eeac2715c12a44b31270c625bb9b3f2d21a225a380fd332",
+    "obfuscate": ["secret", "anotherSecret"],
+    "key": "k01"
+  },
+  {
+    "plaintext": "foo=bar&secret=tell-no-one&anotherSecret=shhhh",
+    "ciphertext": "foo=bar&enc=k01|c4d9734010d5ee825eeac2715c12a44b601cbbd0dbafe7737867b51fe880a4ca1e12216b53db3bff0ad897381a84a8a9",
+    "obfuscate": ["secret", "anotherSecret"],
+    "key": "k01"
+  },
+  {
+    "plaintext": "foo=bar&apikey=Basic 123456789==&user=https://sider.nhs.uk/id|user@nhs.net",
+    "ciphertext": "foo=bar&enc=k01|eb9fd88c3e4c1c4a577ce6c25757040e2f4e7d951f75754ee5af5d756555b91861f05a8b1173447081efeb06b1bdb183d98710f334bdbcb88427bbc78460a5055760fd17007c8b88dfd6f15c6dd15422f1626ff889854d2dec89a580de16e791",
+    "obfuscate": ["apikey", "user"],
+    "key": "k01"
+  }
+]
