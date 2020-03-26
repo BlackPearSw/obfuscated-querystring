@@ -9,12 +9,12 @@ const DELIMITER = '|';
 const ENCRYPTEDKEY = 'enc';
 
 function encrypt(plaintext, encryptionKey){
-    let cipher = crypto.createCipher(ALGORITHM, encryptionKey);
+    const cipher = crypto.createCipher(ALGORITHM, encryptionKey);
     return cipher.update(plaintext, PLAINTEXTENCODING, CIPHERTEXTENCODING) + cipher.final(CIPHERTEXTENCODING);
 }
 
 function decrypt(ciphertext, encryptionKey){
-    let decipher = crypto.createDecipher(ALGORITHM, encryptionKey);
+    const decipher = crypto.createDecipher(ALGORITHM, encryptionKey);
     return decipher.update(ciphertext, CIPHERTEXTENCODING, PLAINTEXTENCODING) + decipher.final(PLAINTEXTENCODING);
 }
 
@@ -23,8 +23,8 @@ function obfuscate(s, options){
         throw new Error('options undefined');
     }
 
-    let allKeys = querystring.parse(s);
-    let obfuscatedKeys = options.obfuscate.reduce((prev, key)=>{
+    const allKeys = querystring.parse(s);
+    const obfuscatedKeys = options.obfuscate.reduce((prev, key)=>{
         if (allKeys[key]){
             prev = prev || {};
             prev[key]=allKeys[key];
@@ -45,18 +45,18 @@ function clarify(s, options){
         throw new Error('options undefined');
     }
 
-    let allKeys = querystring.parse(s);
-    let encrypted = allKeys[ENCRYPTEDKEY];
+    const allKeys = querystring.parse(s);
+    const encrypted = allKeys[ENCRYPTEDKEY];
 
     if (encrypted){
         // get the encryption key
-        let encryptionKeyName = encrypted.split('|')[0];
-        let encryptionKey = options.encryptionKeys[encryptionKeyName];
+        const encryptionKeyName = encrypted.split('|')[0];
+        const encryptionKey = options.encryptionKeys[encryptionKeyName];
 
         // decipher the value
-        let ciphertext = encrypted.split('|')[1];
-        let plaintext = decrypt(ciphertext, encryptionKey);
-        let clarifiedKeys = querystring.parse(plaintext);
+        const ciphertext = encrypted.split('|')[1];
+        const plaintext = decrypt(ciphertext, encryptionKey);
+        const clarifiedKeys = querystring.parse(plaintext);
 
         // add the clarified keys
         _.merge(allKeys, clarifiedKeys);
