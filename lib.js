@@ -49,19 +49,19 @@ function clarify(s, options){
     let encrypted = allKeys[ENCRYPTEDKEY];
 
     if (encrypted){
-        //get the encryption key
+        // get the encryption key
         let encryptionKeyName = encrypted.split('|')[0];
         let encryptionKey = options.encryptionKeys[encryptionKeyName];
 
-        //decipher the value
+        // decipher the value
         let ciphertext = encrypted.split('|')[1];
         let plaintext = decrypt(ciphertext, encryptionKey);
         let clarifiedKeys = querystring.parse(plaintext);
 
-        //add the clarified keys
+        // add the clarified keys
         _.merge(allKeys, clarifiedKeys);
 
-        //remove the encrypted key
+        // remove the encrypted key
         delete allKeys[ENCRYPTEDKEY];
     }
 
