@@ -1,5 +1,3 @@
-'use strict';
-
 const clarify = require('./lib').clarify;
 const obfuscate = require('./lib').obfuscate;
 
@@ -11,7 +9,7 @@ describe('lib', () => {
     describe('clarify', ()=>{
         testCases.forEach((testCase) => {
             it(`${testCase.ciphertext} => ${testCase.plaintext}`, ()=>{
-                let options = {
+                const options = {
                     encryptionKeys: testKeys
                 };
 
@@ -23,7 +21,7 @@ describe('lib', () => {
     describe('obfuscate', ()=>{
         testCases.forEach((testCase) => {
             it(`${testCase.plaintext} => ${testCase.ciphertext}`, ()=>{
-                let options = {
+                const options = {
                     obfuscate: testCase.obfuscate || [],
                     encryptionKey: {
                         name: testCase.key,
