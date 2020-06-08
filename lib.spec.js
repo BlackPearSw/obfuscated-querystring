@@ -1,5 +1,3 @@
-'use strict';
-
 const clarify = require('./lib').clarify;
 const obfuscate = require('./lib').obfuscate;
 
