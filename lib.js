@@ -7,14 +7,15 @@ const PLAINTEXTENCODING = 'utf8';
 const CIPHERTEXTENCODING = 'hex';
 const DELIMITER = '|';
 const ENCRYPTEDKEY = 'enc';
+const IV = Buffer.alloc(16);
 
 function encrypt(plaintext, encryptionKey){
-    const cipher = crypto.createCipher(ALGORITHM, encryptionKey);
+    const cipher = crypto.createCipheriv(ALGORITHM, crypto.createHash("sha256").update(encryptionKey).digest(), IV);
     return cipher.update(plaintext, PLAINTEXTENCODING, CIPHERTEXTENCODING) + cipher.final(CIPHERTEXTENCODING);
 }
 
 function decrypt(ciphertext, encryptionKey){
-    const decipher = crypto.createDecipher(ALGORITHM, encryptionKey);
+    const decipher = crypto.createDecipheriv(ALGORITHM, crypto.createHash("sha256").update(encryptionKey).digest(), IV);
     return decipher.update(ciphertext, CIPHERTEXTENCODING, PLAINTEXTENCODING) + decipher.final(PLAINTEXTENCODING);
 }
 
