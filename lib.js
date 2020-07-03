@@ -1,21 +1,29 @@
 const querystring = require('querystring');
 const crypto = require('crypto');
 const _ = require('lodash');
+const createCipher = require('./create-cipher');
 
 const ALGORITHM = 'aes256';
 const PLAINTEXTENCODING = 'utf8';
 const CIPHERTEXTENCODING = 'hex';
 const DELIMITER = '|';
 const ENCRYPTEDKEY = 'enc';
-const IV = Buffer.alloc(16);
 
 function encrypt(plaintext, encryptionKey){
-    const cipher = crypto.createCipheriv(ALGORITHM, crypto.createHash("sha256").update(encryptionKey).digest(), IV);
+    let [key, iv] = createCipher(ALGORITHM, encryptionKey);
+    key = Buffer.from(`${key}`, 'hex');
+    iv  = Buffer.from(`${iv}`, 'hex');
+
+    const cipher = crypto.createCipheriv(ALGORITHM, key, iv);
     return cipher.update(plaintext, PLAINTEXTENCODING, CIPHERTEXTENCODING) + cipher.final(CIPHERTEXTENCODING);
 }
 
 function decrypt(ciphertext, encryptionKey){
-    const decipher = crypto.createDecipheriv(ALGORITHM, crypto.createHash("sha256").update(encryptionKey).digest(), IV);
+    let [key, iv] = createCipher(ALGORITHM, encryptionKey);
+    key = Buffer.from(`${key}`, 'hex');
+    iv  = Buffer.from(`${iv}`, 'hex');
+
+    const decipher = crypto.createDecipheriv(ALGORITHM, key, iv);
     return decipher.update(ciphertext, CIPHERTEXTENCODING, PLAINTEXTENCODING) + decipher.final(PLAINTEXTENCODING);
 }
 

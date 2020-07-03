@@ -13,19 +13,19 @@
   },
   {
     "plaintext": "foo=bar&secret=tell-no-one",
-    "ciphertext": "foo=bar&enc=k01|f01c14fc6a8f65ac5b661332cf0ad444cd9e4c9b8da0c054fcdfd76440130590",
+    "ciphertext": "foo=bar&enc=k01|c4d9734010d5ee825eeac2715c12a44b31270c625bb9b3f2d21a225a380fd332",
     "obfuscate": ["secret", "anotherSecret"],
     "key": "k01"
   },
   {
     "plaintext": "foo=bar&secret=tell-no-one&anotherSecret=shhhh",
-    "ciphertext": "foo=bar&enc=k01|f01c14fc6a8f65ac5b661332cf0ad444c6dee443282b8c254dcf8dee65a399a4efeb97051c5de7c0ca8367da5b48f8f5",
+    "ciphertext": "foo=bar&enc=k01|c4d9734010d5ee825eeac2715c12a44b601cbbd0dbafe7737867b51fe880a4ca1e12216b53db3bff0ad897381a84a8a9",
     "obfuscate": ["secret", "anotherSecret"],
     "key": "k01"
   },
   {
     "plaintext": "foo=bar&apikey=Basic 123456789==&user=https://sider.nhs.uk/id|user@nhs.net",
-    "ciphertext": "foo=bar&enc=k01|7efc2ea2d6c81755901ffcd7d8d7e2e3ce6c1641d458d8f94f902302179216f865e9f3b5f0799792fb8240b0b0d834d0798d9c9dc9a867d641c4bdbbc2f4b0d43af3d534bddf4fbb6aea2225709b9413b2eeca5576e7e84f321bac5526760e15",
+    "ciphertext": "foo=bar&enc=k01|eb9fd88c3e4c1c4a577ce6c25757040e2f4e7d951f75754ee5af5d756555b91861f05a8b1173447081efeb06b1bdb183d98710f334bdbcb88427bbc78460a5055760fd17007c8b88dfd6f15c6dd15422f1626ff889854d2dec89a580de16e791",
     "obfuscate": ["apikey", "user"],
     "key": "k01"
   }
