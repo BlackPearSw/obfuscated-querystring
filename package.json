@@ -1,15 +1,23 @@
 {
-  "name": "obfuscated-querystring",
-  "version": "0.0.2",
-  "license": "LGPL-3.0",
-  "dependencies": {
-    "lodash": "^4.17.20"
-  },
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^8.2.1"
-  },
-  "scripts": {
-    "test": "mocha \"./*.spec.js\""
-  }
+	"name": "obfuscated-querystring",
+	"version": "0.0.2",
+	"license": "LGPL-3.0",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/BlackPearSw/obfuscated-querystring.git"
+	},
+	"bugs": {
+		"url": "https://github.com/BlackPearSw/obfuscated-querystring/issues"
+	},
+	"homepage": "https://github.com/BlackPearSw/obfuscated-querystring#readme",
+	"dependencies": {
+		"lodash": "^4.17.20"
+	},
+	"devDependencies": {
+		"chai": "^4.2.0",
+		"mocha": "^8.2.1"
+	},
+	"scripts": {
+		"test": "mocha \"./*.spec.js\""
+	}
 }
