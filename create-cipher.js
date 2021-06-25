@@ -1,12 +1,19 @@
 const crypto = require('crypto');
 
 function sizes(cipher) {
+  let attemptCount = 0;
+
   for (let nkey = 1, niv = 0;;) {
     try {
       crypto.createCipheriv(cipher, '.'.repeat(nkey), '.'.repeat(niv));
       return [nkey, niv];
     } catch (e) {
-      if (/invalid iv length/i.test(e.message)) niv += 1;
+      attemptCount++;
+      if (attemptCount > 256) {
+        throw new Error('Maximum cipher creation attempts reached');
+      }
+
+      if (/invalid iv length/i.test(e.message) || /invalid initialization vector/i.test(e.message)) niv += 1;
       else if (/invalid key length/i.test(e.message)) nkey += 1;
       else throw e;
     }
