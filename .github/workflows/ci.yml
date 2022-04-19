@@ -10,40 +10,52 @@ on:
             - 'docs/**'
             - '*.md'
 
+permissions:
+    contents: read
+
 jobs:
     test:
         name: test
         if: github.event.pull_request.draft == false
         strategy:
             matrix:
-                node-version: [10, 12, 14, 16]
+                node: [10, 12, 14, 16]
                 os: [macos-latest, ubuntu-latest, windows-latest]
         runs-on: ${{ matrix.os }}
         steps:
-            - uses: actions/checkout@v3
-            - name: Use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+            - name: Check out repo
+              uses: actions/checkout@v3
+
+            - name: Setup Node ${{ matrix.node }} on ${{ matrix.os }}
               uses: actions/setup-node@v3
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: ${{ matrix.node }}
+
             - name: Install
-              run: npm install --ignore-scripts
-            - name: Run Tests
+              run: npm i --ignore-scripts
+
+            - name: Run tests
               run: npm test
 
     # This job is used to save the PR number in an artifact, for use in the automerge.yml workflow
     save-pr-number:
-        name: Save PR Number
+        name: Save Dependabot PR Number
         if: >
-            github.event.pull_request.draft == false && 
-            github.event_name == 'pull_request'
+            github.event.pull_request.draft == false &&
+            github.event_name == 'pull_request' &&
+            github.actor == 'dependabot[bot]'
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - name: Save PR Number
+            - name: Check out repo
+              uses: actions/checkout@v3
+
+            - name: Save PR number
               run: |
                   mkdir -p ./pr
                   echo ${{ github.event.number }} > ./pr/NR
-            - uses: actions/upload-artifact@v2
+
+            - name: Upload PR number in artifact
+              uses: actions/upload-artifact@v3
               with:
                   name: pr
                   path: pr/
