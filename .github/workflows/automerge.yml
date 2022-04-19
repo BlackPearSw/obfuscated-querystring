@@ -50,7 +50,7 @@ jobs:
                       const pull_number = Number(fs.readFileSync('./NR'));
 
                       await github.rest.pulls.merge({
-                          merge_method: "merge",
+                          merge_method: "squash",
                           owner: context.repo.owner,
                           repo: context.repo.repo,
                           pull_number: pull_number,
