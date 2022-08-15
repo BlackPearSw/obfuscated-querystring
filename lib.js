@@ -1,6 +1,5 @@
 const querystring = require('querystring');
 const crypto = require('crypto');
-const _ = require('lodash');
 const createCipher = require('./create-cipher');
 
 const ALGORITHM = 'aes256';
@@ -68,7 +67,7 @@ function clarify(s, options){
         const clarifiedKeys = querystring.parse(plaintext);
 
         // add the clarified keys
-        _.merge(allKeys, clarifiedKeys);
+        Object.assign(allKeys, clarifiedKeys);
 
         // remove the encrypted key
         delete allKeys[ENCRYPTEDKEY];
