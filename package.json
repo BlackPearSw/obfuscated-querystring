@@ -10,9 +10,6 @@
 		"url": "https://github.com/BlackPearSw/obfuscated-querystring/issues"
 	},
 	"homepage": "https://github.com/BlackPearSw/obfuscated-querystring#readme",
-	"dependencies": {
-		"lodash": "^4.17.20"
-	},
 	"devDependencies": {
 		"chai": "^4.2.0",
 		"mocha": "^9.0.1"
