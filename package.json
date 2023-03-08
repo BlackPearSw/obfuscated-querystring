@@ -1,6 +1,6 @@
 {
-	"name": "obfuscated-querystring",
-	"version": "0.0.2",
+	"name": "@blackpear/obfuscated-querystring",
+	"version": "1.0.0",
 	"license": "LGPL-3.0",
 	"repository": {
 		"type": "git",
